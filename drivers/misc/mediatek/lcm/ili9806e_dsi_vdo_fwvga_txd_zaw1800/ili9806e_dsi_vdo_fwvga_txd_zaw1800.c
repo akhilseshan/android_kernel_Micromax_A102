@@ -469,6 +469,8 @@ DSV power +5V,-5v
 static void ldo_p5m5_dsv_3v0_on(void)
 {
 #if 1
+#define GPIO_DSV_EN 1
+#define GPIO_DSV_EN_M_GPIO 1
 	mt_set_gpio_mode(GPIO_DSV_EN, GPIO_DSV_EN_M_GPIO);
 	mt_set_gpio_pull_enable(GPIO_DSV_EN, GPIO_PULL_ENABLE);
 	mt_set_gpio_dir(GPIO_DSV_EN, GPIO_DIR_OUT);
@@ -511,6 +513,8 @@ static void ldo_p5m5_dsv_3v0_off(void)
 
 static void reset_lcd_module(unsigned char reset)
 {
+#define GPIO_LCM_RST 1 
+#define GPIO_LCM_RST_M_GPIO 1
 	mt_set_gpio_mode(GPIO_LCM_RST, GPIO_LCM_RST_M_GPIO);
 	mt_set_gpio_pull_enable(GPIO_LCM_RST, GPIO_PULL_ENABLE);
 	mt_set_gpio_dir(GPIO_LCM_RST, GPIO_DIR_OUT);
@@ -667,7 +671,7 @@ static unsigned int lcm_compare_id(void)
 // ---------------------------------------------------------------------------
 //  Get LCM Driver Hooks
 // ---------------------------------------------------------------------------
-LCM_DRIVER ili9806e_dsi_vdo_fwvga_txd_zaw1800_drv = {
+LCM_DRIVER ili9806e_dsi_vdo_fwvga_txd_zaw1800_lcm_drv = {
 	.name = "ili9806e_dsi_vdo_fwvga_txd_zaw1800",
 	.set_util_funcs = lcm_set_util_funcs,
 	.get_params = lcm_get_params,
